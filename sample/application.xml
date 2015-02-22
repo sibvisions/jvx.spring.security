@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application>
+  <!-- Spring authenticator parameters -->
+  <Application.authenticator>com.sibvisions.auth.spring.SpringAuthenticator</Application.authenticator>
+  <Application.setup.classname>com.sibvisions.apps.SpringApplicationSetup</Application.setup.classname>
+</application>

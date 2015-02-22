@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sibvisions</groupId>
+		<artifactId>jvx-spring-security</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>jvx-spring-security-server</artifactId>
+
+	<dependencies>
+		<!--<dependency>
+			<groupId>com.sibvisions.jvx</groupId>
+			<artifactId>jvxall</artifactId>
+			<version>2.1.1</version>
+			<scope>provided</scope>
+		</dependency>-->
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sibvisions</groupId>
+			<artifactId>jvx</artifactId>
+			<version>20150213</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/jvx.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sibvisions</groupId>
+			<artifactId>appserver</artifactId>
+			<version>20150213</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/appserver.jar</systemPath>
+		</dependency>
+	</dependencies>
+</project>

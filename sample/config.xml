@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application>
+  <securitymanager>
+    <class>com.sibvisions.rad.server.security.spring.SpringSecurityManager</class>
+	
+	<!--
+	
+	Metadata handler settings:
+	
+	<preauhtentication>
+    	<metadtahandler>
+    		<class>com.sibvisions.MetaDataHandler</class>
+    		<properties>
+    			<property name="role.attribute.name" value="Firstname"/>
+    		</properties>
+    	</metadtahandler>
+    </preauhtentication>
+	-->
+  </securitymanager>
+</application>

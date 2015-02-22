@@ -1,2 +1,4 @@
-# jvx.spring.security
-Spring security integration for JVx application framework
+Overview
+========
+
+Spring security integration for JVx application framework.

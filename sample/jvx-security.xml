@@ -1,0 +1,42 @@
+<!-- default security configuration -->
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans
+								 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+								 http://www.springframework.org/schema/security
+								 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http auto-config="true" use-expressions="true" entry-point-ref="jvxEntryPoint">		
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		
+		<form-login authentication-success-handler-ref="jvxAuthenticationSuccessHandler" />
+ 
+		<logout logout-url="/logout" success-handler-ref="jvxLogoutSuccessHandler"/>
+	</http>
+	
+	<beans:bean id="loginUrlEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:constructor-arg type="java.lang.String" value="/spring_security_login" />
+	</beans:bean>
+	
+	<beans:bean id="jvxEntryPoint" class="com.sibvisions.rad.server.security.spring.SecurityManagerEntryPoint">
+		<beans:constructor-arg ref="loginUrlEntryPoint" />
+	</beans:bean>
+	
+	<beans:bean id="jvxAuthenticationSuccessHandler" class="com.sibvisions.rad.server.security.spring.authentication.SecurityManagerPreparerAuthenticationSuccessHandler">
+		<beans:constructor-arg type="java.lang.String" value="/web/ui" />
+		<beans:constructor-arg type="java.lang.String" value="/logout" />
+	</beans:bean>
+	
+	<beans:bean id="jvxLogoutSuccessHandler" class="com.sibvisions.rad.server.security.spring.logout.DestroySessionLogoutSuccessHandler" />
+	
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="admin" password="admin" authorities="Administrator" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
