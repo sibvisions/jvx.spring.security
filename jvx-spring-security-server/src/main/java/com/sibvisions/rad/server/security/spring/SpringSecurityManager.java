@@ -43,7 +43,7 @@ import com.sibvisions.util.type.ResourceUtil;
 import com.sibvisions.util.xml.XmlNode;
 
 /**
- * The <code>SpringPreAuthenticationSecurityManager</code> is an {@link ISecurityManager}  that allows
+ * The <code>SpringSecurityManager</code> is an {@link ISecurityManager}  that allows
  * to use Spring Security as security manager.
  * 
  * @author Thomas Krautinger

@@ -31,11 +31,13 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 /**
- * Handles the destroy of the server session and delegates the call to the parameterized logout success handler.
+ * Handles the destroy of the server session and delegates the call to the parameterized 
+ * logout success handler.
  * 
  * @author Thomas Krautinger
  */
-public class DestroySessionLogoutSuccessHandler extends DestroySessionHandler implements LogoutSuccessHandler
+public class DestroySessionLogoutSuccessHandler extends DestroySessionHandler 
+                                                implements LogoutSuccessHandler
 {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
@@ -73,7 +75,8 @@ public class DestroySessionLogoutSuccessHandler extends DestroySessionHandler im
 	/**
 	 * {@inheritDoc}
 	 */
-	public void onLogoutSuccess(HttpServletRequest pRequest, HttpServletResponse pResponse, Authentication pAuthentication) throws IOException, ServletException
+	public void onLogoutSuccess(HttpServletRequest pRequest, HttpServletResponse pResponse, 
+                                Authentication pAuthentication) throws IOException, ServletException
 	{
 		doLogout(pAuthentication);
 		

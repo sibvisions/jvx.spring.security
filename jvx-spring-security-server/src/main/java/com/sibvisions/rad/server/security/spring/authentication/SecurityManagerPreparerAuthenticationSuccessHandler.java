@@ -36,7 +36,8 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
  * 
  * @author Thomas Krautinger
  */
-public class SecurityManagerPreparerAuthenticationSuccessHandler extends SecurityManagerPreparer implements AuthenticationSuccessHandler
+public class SecurityManagerPreparerAuthenticationSuccessHandler extends SecurityManagerPreparer 
+                                                                 implements AuthenticationSuccessHandler
 {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
@@ -51,7 +52,8 @@ public class SecurityManagerPreparerAuthenticationSuccessHandler extends Securit
 	
 	/**
 	 * Creates a new instance of <code>PrepareSessionAuthenticationSuccessHandler</code>.
-	 * As delegate authentication success handler will be an <code>SimpleUrlAuthenticationSuccessHandler</code> with the default target URL <code>/</code> created.
+	 * As delegate authentication success handler will be an <code>SimpleUrlAuthenticationSuccessHandler</code> 
+	 * with the default target URL <code>/</code> created.
 	 * 
 	 * @param pLogoutProcessUrl the logout process URL
 	 */
@@ -62,7 +64,8 @@ public class SecurityManagerPreparerAuthenticationSuccessHandler extends Securit
 	
 	/**
 	 * Creates a new instance of <code>PrepareSessionAuthenticationSuccessHandler</code>.
-	 * As delegate authentication success handler will be an <code>SimpleUrlAuthenticationSuccessHandler</code> with the default target URL <code>pDefaultTargetUrl</code> created.
+	 * As delegate authentication success handler will be an <code>SimpleUrlAuthenticationSuccessHandler</code> 
+	 * with the default target URL <code>pDefaultTargetUrl</code> created.
 	 * 
 	 * @param pDefaultTargetUrl the default target URL
 	 * @param pLogoutProcessUrl the logout process URL
@@ -78,7 +81,8 @@ public class SecurityManagerPreparerAuthenticationSuccessHandler extends Securit
 	 * @param pDelegateAuthenticationSuccessHandler the delegate authentication success handler 
 	 * @param pLogoutProcessUrl the logout process URL 
 	 */
-	public SecurityManagerPreparerAuthenticationSuccessHandler(AuthenticationSuccessHandler pDelegateAuthenticationSuccessHandler, String pLogoutProcessUrl)
+	public SecurityManagerPreparerAuthenticationSuccessHandler(AuthenticationSuccessHandler pDelegateAuthenticationSuccessHandler, 
+                                                               String pLogoutProcessUrl)
 	{
 		super(pLogoutProcessUrl);
 		
@@ -92,7 +96,8 @@ public class SecurityManagerPreparerAuthenticationSuccessHandler extends Securit
 	/**
 	 * {@inheritDoc}
 	 */
-	public void onAuthenticationSuccess(HttpServletRequest pRequest, HttpServletResponse pResponse, Authentication pAuthentication) throws IOException, ServletException
+	public void onAuthenticationSuccess(HttpServletRequest pRequest, HttpServletResponse pResponse, 
+                                        Authentication pAuthentication) throws IOException, ServletException
 	{
 		if (delegateAuthenticationSuccessHandler != null)
 		{

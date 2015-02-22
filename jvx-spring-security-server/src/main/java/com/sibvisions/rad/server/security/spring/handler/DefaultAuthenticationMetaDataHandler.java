@@ -32,7 +32,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.sibvisions.util.ArrayUtil;
 
 /**
- * The <code>DefaultAuthenticationMetaDataHandler</code> encapsulate the access to a spring security authentication object.
+ * The <code>DefaultAuthenticationMetaDataHandler</code> encapsulate the access to a spring security 
+ * authentication object.
  * 
  * @author Thomas Krautinger
  */

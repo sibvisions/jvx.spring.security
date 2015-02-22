@@ -36,8 +36,8 @@ import com.sibvisions.apps.projx.ProjX;
 import com.sibvisions.auth.spring.SpringAuthenticator;
 
 /**
- * The <code>SpringApplicationSetup</code> set default parameters
- * and appends additional listener for login, logout and exception handling.
+ * The <code>SpringApplicationSetup</code> sets default parameters
+ * and appends additional listeners for login, logout and exception handling.
  *  
  * @author Thomas Krautinger
  */
@@ -83,6 +83,10 @@ public class SpringApplicationSetup implements IApplicationSetup
 		
 	}
 	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// User-defined methods
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Register additional parameters (logout.process.url and logout.process.target) to the launcher.
 	 * 
@@ -249,4 +253,4 @@ public class SpringApplicationSetup implements IApplicationSetup
 		return false;
 	}
 	
-} // PreAuthenticationApplicationSetup
+} // SpringApplicationSetup

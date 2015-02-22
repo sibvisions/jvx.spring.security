@@ -31,7 +31,8 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
  * 
  * @author Thomas Krautinger
  */
-public class DestroySessionLogoutHandler extends DestroySessionHandler implements LogoutHandler
+public class DestroySessionLogoutHandler extends DestroySessionHandler 
+                                         implements LogoutHandler
 {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Interface implementation

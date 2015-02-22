@@ -36,7 +36,8 @@ import javax.servlet.http.HttpServletRequest;
  * 
  * @author Thomas Krautinger
  */
-public class SecurityManagerPreparerAuthenticationFilter extends SecurityManagerPreparer implements Filter
+public class SecurityManagerPreparerAuthenticationFilter extends SecurityManagerPreparer 
+                                                         implements Filter
 {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Initialization
