@@ -172,6 +172,17 @@ public class DefaultAuthenticationMetaDataHandler implements ISpringMetaDataHand
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	/**
+	 * Gets the value of a property.
+	 * 
+	 * @param pName the property name
+	 * @return the value of the property
+	 */
+	public Object getProperty(String pName)
+	{
+		return properties.get(pName);
+	}
+	
+	/**
 	 * Gets the properties.
 	 * 
 	 * @return the properties
@@ -180,7 +191,7 @@ public class DefaultAuthenticationMetaDataHandler implements ISpringMetaDataHand
 	{
 		return properties;
 	}
-
+	
 	/**
 	 * Sets the properties.
 	 * 

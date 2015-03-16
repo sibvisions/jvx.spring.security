@@ -61,7 +61,7 @@ public class DestroySessionLogoutSuccessHandler extends DestroySessionHandler
 	/**
 	 * Creates a new instance of <code>DestroySessionLogoutSuccessHandler</code>.
 	 * 
-	 * @param pDelegateLogoutSuccessHandler
+	 * @param pDelegateLogoutSuccessHandler the delegate logout success handler
 	 */
 	public DestroySessionLogoutSuccessHandler(LogoutSuccessHandler pDelegateLogoutSuccessHandler)
 	{
@@ -75,7 +75,8 @@ public class DestroySessionLogoutSuccessHandler extends DestroySessionHandler
 	/**
 	 * {@inheritDoc}
 	 */
-	public void onLogoutSuccess(HttpServletRequest pRequest, HttpServletResponse pResponse, 
+	public void onLogoutSuccess(HttpServletRequest pRequest,
+								HttpServletResponse pResponse,
                                 Authentication pAuthentication) throws IOException, ServletException
 	{
 		doLogout(pAuthentication);

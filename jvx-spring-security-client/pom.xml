@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>jvxclient</artifactId>
-			<version>20150213</version>
+			<version>20150310</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/jvxclient.jar</systemPath>
 		</dependency>
@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>appsclient</artifactId>
-			<version>20150213</version>
+			<version>20150310</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/appsclient.jar</systemPath>
 		</dependency>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>projx</artifactId>
-			<version>20150213</version>
+			<version>20150310</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/projx.jar</systemPath>
 		</dependency>

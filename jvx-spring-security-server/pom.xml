@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>jvx</artifactId>
-			<version>20150213</version>
+			<version>20150310</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/jvx.jar</systemPath>
 		</dependency>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>appserver</artifactId>
-			<version>20150213</version>
+			<version>20150310</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/appserver.jar</systemPath>
 		</dependency>

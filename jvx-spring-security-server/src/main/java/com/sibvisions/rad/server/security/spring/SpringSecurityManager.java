@@ -51,6 +51,19 @@ import com.sibvisions.util.xml.XmlNode;
 public class SpringSecurityManager implements ISecurityManager
 {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Constants
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	/** The key for the metadata handler. */
+	public static final String METADATA_HANDLER = IConnectionConstants.PREFIX_SERVER + "preauthentication.metadatahandler";
+	
+	/** The key for the session id. */
+	public static final String SESSION_ID = IConnectionConstants.PREFIX_CLIENT + "sessionid";
+	
+	/** The key for the logout process URL. */
+	public static final String LOGOUT_PROCESS_URL = IConnectionConstants.PREFIX_CLIENT + "logout.process.url";
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Interface implementation
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
@@ -79,7 +92,7 @@ public class SpringSecurityManager implements ISecurityManager
 					((AbstractSession) pSession).setPassword(metaDataHandler.getPassword());
 				}
 				
-				pSession.setProperty(IConnectionConstants.PREFIX_SERVER + "preauthentication.metadatahandler", metaDataHandler);
+				pSession.setProperty(METADATA_HANDLER, metaDataHandler);
 				
 				if (!(authentication instanceof WrappedAuthentication))
 				{
@@ -88,10 +101,10 @@ public class SpringSecurityManager implements ISecurityManager
 				}
 				
 				// set the jvx session id into the authentication object for the logout (success) handler
-				((WrappedAuthentication) authentication).setProperty(IConnectionConstants.PREFIX_CLIENT + "sessionid", pSession.getId());
+				((WrappedAuthentication) authentication).setProperty(SESSION_ID, pSession.getId());
 				
 				// set the logout process url
-				Object logoutProcessUrl = ((WrappedAuthentication) authentication).getProperty(IConnectionConstants.PREFIX_CLIENT + "logout.process.url");
+				Object logoutProcessUrl = ((WrappedAuthentication) authentication).getProperty(LOGOUT_PROCESS_URL);
 				
 				if (logoutProcessUrl == null)
 				{
@@ -103,14 +116,13 @@ public class SpringSecurityManager implements ISecurityManager
 						
 						if (session != null)
 						{
-							pSession.setProperty(IConnectionConstants.PREFIX_CLIENT + "logout.process.url",
-												 session.getAttribute(IConnectionConstants.PREFIX_CLIENT + "logout.process.url"));
+							pSession.setProperty(LOGOUT_PROCESS_URL, session.getAttribute(LOGOUT_PROCESS_URL));
 						}
 						
 					}
 				}
 				
-				pSession.setProperty(IConnectionConstants.PREFIX_CLIENT + "logout.process.url", logoutProcessUrl);
+				pSession.setProperty(LOGOUT_PROCESS_URL, logoutProcessUrl);
 			}
 			else
 			{
@@ -137,7 +149,7 @@ public class SpringSecurityManager implements ISecurityManager
 	public void logout(ISession pSession)
 	{
 		if (Boolean.valueOf((String)pSession.getProperty("userlogout")).booleanValue()
-			&& pSession.getProperty(IConnectionConstants.PREFIX_CLIENT + "logout.process.url") == null)
+			&& pSession.getProperty(LOGOUT_PROCESS_URL) == null)
 		{
 		     SecurityContextHolder.getContext().setAuthentication(null);
 		     SecurityContextHolder.clearContext();

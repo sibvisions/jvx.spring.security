@@ -96,7 +96,8 @@ public class SecurityManagerPreparerAuthenticationSuccessHandler extends Securit
 	/**
 	 * {@inheritDoc}
 	 */
-	public void onAuthenticationSuccess(HttpServletRequest pRequest, HttpServletResponse pResponse, 
+	public void onAuthenticationSuccess(HttpServletRequest pRequest,
+										HttpServletResponse pResponse, 
                                         Authentication pAuthentication) throws IOException, ServletException
 	{
 		if (delegateAuthenticationSuccessHandler != null)

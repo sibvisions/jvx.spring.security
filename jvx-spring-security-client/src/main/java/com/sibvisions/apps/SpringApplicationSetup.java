@@ -30,7 +30,7 @@ import javax.rad.remote.AbstractConnection;
 import javax.rad.remote.CommunicationException;
 import javax.rad.remote.IConnectionConstants;
 import javax.rad.remote.MasterConnection;
-import javax.rad.remote.UnauthorizedCommunicationException;
+import javax.rad.remote.UnauthorizedException;
 
 import com.sibvisions.apps.projx.ProjX;
 import com.sibvisions.auth.spring.SpringAuthenticator;
@@ -42,8 +42,7 @@ import com.sibvisions.auth.spring.SpringAuthenticator;
  * @author Thomas Krautinger
  */
 public class SpringApplicationSetup implements IApplicationSetup
-{
-
+{	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,6 +179,7 @@ public class SpringApplicationSetup implements IApplicationSetup
 	public void doAutoLoginException(ProjX pApplication, MasterConnection pConnection, Throwable pThrowable) throws Throwable
 	{
 		projx.handleException(new SecurityException("Spring security pre-authentication failed!"));
+		projx.error(pThrowable);
 	}
 	
 	/**
@@ -190,7 +190,7 @@ public class SpringApplicationSetup implements IApplicationSetup
 	 */
 	public void doAfterCommunicationException(ProjX pApplication, CommunicationException pException)
 	{
-		if (pException instanceof UnauthorizedCommunicationException)
+		if (pException instanceof UnauthorizedException)
 		{
 			try
 			{

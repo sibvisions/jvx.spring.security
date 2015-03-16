@@ -33,6 +33,7 @@ import org.springframework.security.web.PortResolverImpl;
 import org.springframework.security.web.util.RedirectUrlBuilder;
 import org.springframework.security.web.util.UrlUtils;
 
+import com.sibvisions.rad.server.security.spring.SpringSecurityManager;
 import com.sibvisions.rad.server.security.spring.WrappedAuthentication;
 
 /**
@@ -43,13 +44,6 @@ import com.sibvisions.rad.server.security.spring.WrappedAuthentication;
  */
 public class SecurityManagerPreparer implements InitializingBean
 {
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Constants
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-	/** the key for the logout process URL. */
-	private static final String LOGOUT_PROCESS_URL = IConnectionConstants.PREFIX_CLIENT + "logout.process.url";
-	
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -106,7 +100,7 @@ public class SecurityManagerPreparer implements InitializingBean
 		
 		if (session != null)
 		{
-			session.setAttribute(LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
+			session.setAttribute(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
 		}
 		
 		SecurityContext context = SecurityContextHolder.getContext();
@@ -123,7 +117,7 @@ public class SecurityManagerPreparer implements InitializingBean
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
 				
-				((WrappedAuthentication) authentication).setProperty(LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
+				((WrappedAuthentication) authentication).setProperty(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
 			}
 		}
 	}
