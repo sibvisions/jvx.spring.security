@@ -116,7 +116,7 @@ public class SpringSecurityManager implements ISecurityManager
 						
 						if (session != null)
 						{
-							pSession.setProperty(LOGOUT_PROCESS_URL, session.getAttribute(LOGOUT_PROCESS_URL));
+							logoutProcessUrl = session.getAttribute(LOGOUT_PROCESS_URL);
 						}
 						
 					}
