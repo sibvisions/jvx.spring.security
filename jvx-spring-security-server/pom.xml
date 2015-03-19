@@ -9,13 +9,6 @@
 	<artifactId>jvx-spring-security-server</artifactId>
 
 	<dependencies>
-		<!--<dependency>
-			<groupId>com.sibvisions.jvx</groupId>
-			<artifactId>jvxall</artifactId>
-			<version>2.1.1</version>
-			<scope>provided</scope>
-		</dependency>-->
-		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -27,6 +20,14 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>3.2.5.RELEASE</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>

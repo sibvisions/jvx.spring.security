@@ -23,6 +23,8 @@ package com.sibvisions.rad.server.security.spring.logout;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -38,6 +40,9 @@ public class DestroySessionLogoutHandler extends DestroySessionHandler
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	/** The logger for this class. */
+	private final Log logger = LogFactory.getLog(this.getClass());
 	
 	/** The delegate logout success handler. */
 	private LogoutHandler delegateLogoutHandler;
@@ -73,6 +78,8 @@ public class DestroySessionLogoutHandler extends DestroySessionHandler
 	 */
 	public void logout(HttpServletRequest pRequest, HttpServletResponse pResponse, Authentication pAuthentication)
 	{
+		logger.debug("Processing destroy session logout handler");
+		
 		doLogout(pAuthentication);
 		
 		if (delegateLogoutHandler != null)

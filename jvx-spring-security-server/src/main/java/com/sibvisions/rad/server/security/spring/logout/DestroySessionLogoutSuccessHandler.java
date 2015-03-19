@@ -26,6 +26,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
@@ -42,6 +44,9 @@ public class DestroySessionLogoutSuccessHandler extends DestroySessionHandler
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	/** The logger for this class. */
+	private final Log logger = LogFactory.getLog(this.getClass());
 	
 	/** The delegate logout success handler. */
 	private LogoutSuccessHandler delegateLogoutSuccessHandler;
@@ -79,6 +84,8 @@ public class DestroySessionLogoutSuccessHandler extends DestroySessionHandler
 								HttpServletResponse pResponse,
                                 Authentication pAuthentication) throws IOException, ServletException
 	{
+		logger.debug("Processing destroy session logout success handler");
+		
 		doLogout(pAuthentication);
 		
 		if (delegateLogoutSuccessHandler != null)
