@@ -225,13 +225,17 @@ public class SpringApplicationSetup implements IApplicationSetup
 		{
 			try
 			{
-				// we must validate the url, because windows rundll32 url.dll,fileprotocolhandler don't do it
-				URL uProcessUrl = new URL(sProcessUrl);
-				
-				if (!(uProcessUrl.getProtocol().toLowerCase().equals("http")
-					|| uProcessUrl.getProtocol().toLowerCase().equals("https")))
+				if (!(sProcessUrl.startsWith("/")
+					|| sProcessUrl.startsWith("./")))
 				{
-					throw new IllegalArgumentException("Invalid logout process URL (" + sProcessUrl + ")");
+					// we must validate the url, because windows rundll32 url.dll,fileprotocolhandler don't do it
+					URL uProcessUrl = new URL(sProcessUrl);
+					
+					if (!(uProcessUrl.getProtocol().toLowerCase().equals("http")
+						|| uProcessUrl.getProtocol().toLowerCase().equals("https")))
+					{
+						throw new IllegalArgumentException("Invalid logout process URL (" + sProcessUrl + ")");
+					}
 				}
 				
 				if (sProcessTarget == null
@@ -246,7 +250,7 @@ public class SpringApplicationSetup implements IApplicationSetup
 			}
 			catch (Throwable thr)
 			{
-				projx.debug(thr);
+				projx.error(thr);
 			}
 		}
 		

@@ -20,7 +20,6 @@
  */
 package com.sibvisions.rad.server.security.spring.authentication;
 
-import javax.rad.remote.IConnectionConstants;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -151,9 +150,10 @@ public class SecurityManagerPreparer implements InitializingBean
 	 */
 	protected String buildAbsoluteLogoutProcessUrl(HttpServletRequest pRequest)
 	{
-
-        if (UrlUtils.isAbsoluteUrl(logoutProcessUrl))
-        {
+		if (logoutProcessUrl.startsWith("/")
+			|| logoutProcessUrl.startsWith("./")
+			|| UrlUtils.isAbsoluteUrl(logoutProcessUrl))
+		{
             return logoutProcessUrl;
         }
         
