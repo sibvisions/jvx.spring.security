@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
  * 
  * @author Thomas Krautinger
  */
-public class SecurityManagerPreparerAuthenticationFilter extends SecurityManagerPreparer 
+public class SecurityManagerPreparerAuthenticationFilter extends SecurityManagerPreparer
                                                          implements Filter
 {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,7 +50,7 @@ public class SecurityManagerPreparerAuthenticationFilter extends SecurityManager
 	 */
 	public SecurityManagerPreparerAuthenticationFilter(String pLogoutProcessUrl)
 	{
-		super(pLogoutProcessUrl);
+		super(pLogoutProcessUrl); 
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

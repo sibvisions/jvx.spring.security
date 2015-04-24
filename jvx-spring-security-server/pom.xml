@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.sibvisions</groupId>
 		<artifactId>jvx-spring-security</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 	</parent>
 	<artifactId>jvx-spring-security-server</artifactId>
 
@@ -29,7 +29,7 @@
 			<version>1.1.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>jvx</artifactId>
@@ -37,7 +37,7 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/jvx.jar</systemPath>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>appserver</artifactId>

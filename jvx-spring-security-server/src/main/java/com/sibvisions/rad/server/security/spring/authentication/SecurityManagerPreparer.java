@@ -43,6 +43,13 @@ import com.sibvisions.rad.server.security.spring.WrappedAuthentication;
  */
 public class SecurityManagerPreparer implements InitializingBean
 {
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Constants
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	/** The attribute to validate if JVx Spring Security is initialization. */
+	private static final String JVX_SPRINGSECURITY_INITIALIZED = "JVX_SPRINGSECURITY_INITIALIZED";
+	
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,7 +106,11 @@ public class SecurityManagerPreparer implements InitializingBean
 		
 		if (session != null)
 		{
-			session.setAttribute(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
+			if (session.getAttribute(JVX_SPRINGSECURITY_INITIALIZED) == null)
+			{
+				session.setAttribute(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
+				session.setAttribute(JVX_SPRINGSECURITY_INITIALIZED, Boolean.TRUE);
+			}
 		}
 		
 		SecurityContext context = SecurityContextHolder.getContext();
@@ -116,7 +127,11 @@ public class SecurityManagerPreparer implements InitializingBean
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
 				
-				((WrappedAuthentication) authentication).setProperty(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
+				if (((WrappedAuthentication) authentication).getProperty(JVX_SPRINGSECURITY_INITIALIZED) == null)
+				{
+					((WrappedAuthentication) authentication).setProperty(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
+					((WrappedAuthentication) authentication).setProperty(JVX_SPRINGSECURITY_INITIALIZED, Boolean.TRUE);
+				}
 			}
 		}
 	}
@@ -150,8 +165,7 @@ public class SecurityManagerPreparer implements InitializingBean
 	 */
 	protected String buildAbsoluteLogoutProcessUrl(HttpServletRequest pRequest)
 	{
-		if (logoutProcessUrl.startsWith("/")
-			|| logoutProcessUrl.startsWith("./")
+		if (logoutProcessUrl.startsWith("./")
 			|| UrlUtils.isAbsoluteUrl(logoutProcessUrl))
 		{
             return logoutProcessUrl;
