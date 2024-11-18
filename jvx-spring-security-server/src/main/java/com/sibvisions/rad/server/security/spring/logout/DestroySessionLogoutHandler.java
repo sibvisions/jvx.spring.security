@@ -23,11 +23,8 @@ package com.sibvisions.rad.server.security.spring.logout;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 /**
  * Handles the destroy of the server session.
@@ -37,38 +34,6 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 public class DestroySessionLogoutHandler extends DestroySessionHandler 
                                          implements LogoutHandler
 {
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Class members
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-	/** The logger for this class. */
-	private final Log logger = LogFactory.getLog(this.getClass());
-	
-	/** The delegate logout success handler. */
-	private LogoutHandler delegateLogoutHandler;
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Initialization
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-    /**
-     * Creates a new instance of <code>DestroySessionLogoutHandler</code>.
-     */
-	public DestroySessionLogoutHandler()
-	{
-		delegateLogoutHandler = new SecurityContextLogoutHandler();
-	}
-	
-	/**
-	 * Creates a new instance of <code>DestroySessionLogoutHandler</code>.
-	 * 
-	 * @param pDelegateLogoutHandler the delegate logout handler
-	 */
-	public DestroySessionLogoutHandler(LogoutHandler pDelegateLogoutHandler)
-	{
-		delegateLogoutHandler = pDelegateLogoutHandler;
-	}
-	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Interface implementation
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,38 +43,7 @@ public class DestroySessionLogoutHandler extends DestroySessionHandler
 	 */
 	public void logout(HttpServletRequest pRequest, HttpServletResponse pResponse, Authentication pAuthentication)
 	{
-		logger.debug("Processing destroy session logout handler");
-		
 		doLogout(pAuthentication);
-		
-		if (delegateLogoutHandler != null)
-		{
-			delegateLogoutHandler.logout(pRequest, pResponse, pAuthentication);
-		}
-	}
-	
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // User-defined methods
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-	/**
-	 * Gets the delegate logout handler.
-	 * 
-	 * @return the delegate logout handler
-	 */
-	public LogoutHandler getDelegateLogoutHandler()
-	{
-		return delegateLogoutHandler;
-	}
-
-	/**
-	 * Sets the delegate logout handler.
-	 * 
-	 * @param pDelegateLogoutHandler the delegate logout handler
-	 */
-	public void setDelegateLogoutHandler(LogoutHandler pDelegateLogoutHandler)
-	{
-		delegateLogoutHandler = pDelegateLogoutHandler;
 	}
 	
 } // DestroySessionLogoutHandler

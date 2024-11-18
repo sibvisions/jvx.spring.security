@@ -22,7 +22,7 @@ package com.sibvisions.rad.server.security.spring.handler;
 
 import java.util.Hashtable;
 
-import javax.rad.persist.MetaData;
+import jvx.rad.persist.MetaData;
 
 /**
  * The <code>ISpringMetaDataHandler</code> encapsulate the access to a spring security authentication object.

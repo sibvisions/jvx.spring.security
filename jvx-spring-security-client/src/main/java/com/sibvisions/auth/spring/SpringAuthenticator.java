@@ -22,8 +22,8 @@ package com.sibvisions.auth.spring;
 
 import java.util.Hashtable;
 
-import javax.rad.application.ILauncher;
-import javax.rad.remote.AbstractConnection;
+import jvx.rad.application.ILauncher;
+import jvx.rad.remote.AbstractConnection;
 
 import com.sibvisions.apps.auth.IAuthenticator;
 

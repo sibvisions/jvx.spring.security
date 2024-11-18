@@ -22,15 +22,15 @@ package com.sibvisions.apps;
 
 import java.net.URL;
 
-import javax.rad.application.IApplication;
-import javax.rad.application.genui.IApplicationSetup;
-import javax.rad.application.genui.RemoteApplication;
-import javax.rad.application.genui.UILauncher;
-import javax.rad.remote.AbstractConnection;
-import javax.rad.remote.CommunicationException;
-import javax.rad.remote.IConnectionConstants;
-import javax.rad.remote.MasterConnection;
-import javax.rad.remote.UnauthorizedException;
+import jvx.rad.application.IApplication;
+import jvx.rad.application.genui.IApplicationSetup;
+import jvx.rad.application.genui.RemoteApplication;
+import jvx.rad.application.genui.UILauncher;
+import jvx.rad.remote.AbstractConnection;
+import jvx.rad.remote.CommunicationException;
+import jvx.rad.remote.IConnectionConstants;
+import jvx.rad.remote.MasterConnection;
+import jvx.rad.remote.UnauthorizedException;
 
 import com.sibvisions.apps.projx.ProjX;
 import com.sibvisions.auth.spring.SpringAuthenticator;
@@ -42,7 +42,8 @@ import com.sibvisions.auth.spring.SpringAuthenticator;
  * @author Thomas Krautinger
  */
 public class SpringApplicationSetup implements IApplicationSetup
-{	
+{
+
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -154,7 +155,7 @@ public class SpringApplicationSetup implements IApplicationSetup
 			{
 				redirect();
 				
-				projx.showInformation(projx, projx.translate("You have successfully logged out!"));
+				projx.showInformation(projx, "You have successfully logged out!");
 			}
 		}
 		catch (Throwable th)
@@ -179,7 +180,6 @@ public class SpringApplicationSetup implements IApplicationSetup
 	public void doAutoLoginException(ProjX pApplication, MasterConnection pConnection, Throwable pThrowable) throws Throwable
 	{
 		projx.handleException(new SecurityException("Spring security pre-authentication failed!"));
-		projx.error(pThrowable);
 	}
 	
 	/**
@@ -194,7 +194,7 @@ public class SpringApplicationSetup implements IApplicationSetup
 		{
 			try
 			{
-				projx.showInformation(projx, projx.translate("You were logged off by the pre-authentication system!"));
+				projx.showInformation(projx, "You were logged off by the pre-authentication system!");
 			}
 			catch (Throwable thr)
 			{
@@ -225,17 +225,13 @@ public class SpringApplicationSetup implements IApplicationSetup
 		{
 			try
 			{
-				if (!(sProcessUrl.startsWith("/")
-					|| sProcessUrl.startsWith("./")))
+				// we must validate the url, because windows rundll32 url.dll,fileprotocolhandler don't do it
+				URL uProcessUrl = new URL(sProcessUrl);
+				
+				if (!(uProcessUrl.getProtocol().toLowerCase().equals("http")
+					|| uProcessUrl.getProtocol().toLowerCase().equals("https")))
 				{
-					// we must validate the url, because windows rundll32 url.dll,fileprotocolhandler don't do it
-					URL uProcessUrl = new URL(sProcessUrl);
-					
-					if (!(uProcessUrl.getProtocol().toLowerCase().equals("http")
-						|| uProcessUrl.getProtocol().toLowerCase().equals("https")))
-					{
-						throw new IllegalArgumentException("Invalid logout process URL (" + sProcessUrl + ")");
-					}
+					throw new IllegalArgumentException("Invalid logout process URL (" + sProcessUrl + ")");
 				}
 				
 				if (sProcessTarget == null
@@ -250,7 +246,7 @@ public class SpringApplicationSetup implements IApplicationSetup
 			}
 			catch (Throwable thr)
 			{
-				projx.error(thr);
+				projx.debug(thr);
 			}
 		}
 		

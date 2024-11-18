@@ -4,11 +4,18 @@
 	<parent>
 		<groupId>com.sibvisions</groupId>
 		<artifactId>jvx-spring-security</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>jvx-spring-security-server</artifactId>
 
 	<dependencies>
+		<!--<dependency>
+			<groupId>com.sibvisions.jvx</groupId>
+			<artifactId>jvxall</artifactId>
+			<version>2.1.1</version>
+			<scope>provided</scope>
+		</dependency>-->
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -20,28 +27,20 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>3.2.5.RELEASE</version>
-			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-			<scope>provided</scope>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>jvx</artifactId>
-			<version>20150310</version>
+			<version>20150213</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/jvx.jar</systemPath>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>com.sibvisions</groupId>
 			<artifactId>appserver</artifactId>
-			<version>20150310</version>
+			<version>20150213</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/libs/appserver.jar</systemPath>
 		</dependency>

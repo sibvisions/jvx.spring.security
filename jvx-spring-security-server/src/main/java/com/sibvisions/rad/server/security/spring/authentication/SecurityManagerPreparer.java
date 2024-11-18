@@ -20,6 +20,7 @@
  */
 package com.sibvisions.rad.server.security.spring.authentication;
 
+import jvx.rad.remote.IConnectionConstants;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,7 +33,6 @@ import org.springframework.security.web.PortResolverImpl;
 import org.springframework.security.web.util.RedirectUrlBuilder;
 import org.springframework.security.web.util.UrlUtils;
 
-import com.sibvisions.rad.server.security.spring.SpringSecurityManager;
 import com.sibvisions.rad.server.security.spring.WrappedAuthentication;
 
 /**
@@ -47,8 +47,8 @@ public class SecurityManagerPreparer implements InitializingBean
 	// Constants
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
-	/** The attribute to validate if JVx Spring Security is initialization. */
-	private static final String JVX_SPRINGSECURITY_INITIALIZED = "JVX_SPRINGSECURITY_INITIALIZED";
+	/** the key for the logout process URL. */
+	private static final String LOGOUT_PROCESS_URL = IConnectionConstants.PREFIX_CLIENT + "logout.process.url";
 	
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Class members
@@ -106,11 +106,7 @@ public class SecurityManagerPreparer implements InitializingBean
 		
 		if (session != null)
 		{
-			if (session.getAttribute(JVX_SPRINGSECURITY_INITIALIZED) == null)
-			{
-				session.setAttribute(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
-				session.setAttribute(JVX_SPRINGSECURITY_INITIALIZED, Boolean.TRUE);
-			}
+			session.setAttribute(LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
 		}
 		
 		SecurityContext context = SecurityContextHolder.getContext();
@@ -127,11 +123,7 @@ public class SecurityManagerPreparer implements InitializingBean
 					SecurityContextHolder.getContext().setAuthentication(authentication);
 				}
 				
-				if (((WrappedAuthentication) authentication).getProperty(JVX_SPRINGSECURITY_INITIALIZED) == null)
-				{
-					((WrappedAuthentication) authentication).setProperty(SpringSecurityManager.LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
-					((WrappedAuthentication) authentication).setProperty(JVX_SPRINGSECURITY_INITIALIZED, Boolean.TRUE);
-				}
+				((WrappedAuthentication) authentication).setProperty(LOGOUT_PROCESS_URL, absoluteLogoutProcessUrl);
 			}
 		}
 	}
@@ -165,9 +157,9 @@ public class SecurityManagerPreparer implements InitializingBean
 	 */
 	protected String buildAbsoluteLogoutProcessUrl(HttpServletRequest pRequest)
 	{
-		if (logoutProcessUrl.startsWith("./")
-			|| UrlUtils.isAbsoluteUrl(logoutProcessUrl))
-		{
+
+        if (UrlUtils.isAbsoluteUrl(logoutProcessUrl))
+        {
             return logoutProcessUrl;
         }
         

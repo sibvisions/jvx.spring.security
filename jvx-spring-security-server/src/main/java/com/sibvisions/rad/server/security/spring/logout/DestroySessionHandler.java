@@ -20,10 +20,8 @@
  */
 package com.sibvisions.rad.server.security.spring.logout;
 
-import javax.rad.remote.SessionExpiredException;
+import jvx.rad.remote.SessionExpiredException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 
 import com.sibvisions.rad.server.Server;
@@ -36,13 +34,6 @@ import com.sibvisions.rad.server.security.spring.WrappedAuthentication;
  */
 public class DestroySessionHandler
 {
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Class members
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-	/** The logger for this class. */
-	private final Log logger = LogFactory.getLog(this.getClass());
-	
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // User-defined methods
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,8 +56,6 @@ public class DestroySessionHandler
 				
 				try
 				{
-					logger.debug("Performing destroy session (" + sessionId + ")");
-					
 					server.destroySession(sessionId);
 				}
 				catch (SessionExpiredException exc)

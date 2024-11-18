@@ -22,10 +22,10 @@ package com.sibvisions.rad.server.object;
 
 import java.util.Hashtable;
 
-import javax.rad.persist.MetaData;
-import javax.rad.remote.IConnectionConstants;
-import javax.rad.server.ISession;
-import javax.rad.server.SessionContext;
+import jvx.rad.persist.MetaData;
+import jvx.rad.remote.IConnectionConstants;
+import jvx.rad.server.ISession;
+import jvx.rad.server.SessionContext;
 
 import com.sibvisions.apps.server.object.IWorkScreenAccess;
 import com.sibvisions.rad.persist.jdbc.DBStorage;
